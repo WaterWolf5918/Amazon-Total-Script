@@ -3,11 +3,11 @@
 // @namespace   https://waterwolf.net
 // @match       https://www.amazon.com/hz/wishlist/*
 // @grant       none
-// @version     1.0
+// @version     1.1
 // @author      -
 // @description 6/24/2025, 8:20:56 PM
 // ==/UserScript==
-
+// 1.1 -> Round to 2 decimal places for total
 let total = 0;
 const totalElDiv = document.createElement('div')
 totalElDiv.classList.add('aok-float-right')
@@ -21,5 +21,6 @@ const elLoaderTimer = setInterval(() => {
   document.querySelectorAll('#g-items .g-item-sortable').forEach(i => total += parseFloat(i.dataset.price))
   console.log("Creating new elements in the DOM.")
   document.querySelector('#wl-list-info .a-row').append(totalElDiv)
-  document.getElementById('WWsats-inject-total').innerText = `$${total}`
+  document.getElementById('WWsats-inject-total').innerText = `$${total.toFixed(2)}`
+
 },500)
